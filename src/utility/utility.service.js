@@ -1,3 +1,5 @@
+const { OG_TAGS } = require('../constants/constants');
+
 class HelperService {
 
     static isValidUrl (urlStr ) {
@@ -22,8 +24,34 @@ class HelperService {
                 }
             });
         }
+        if (!images.length) {
+            $.querySelectorAll('img').forEach(function (el) {
+                const src = el.getAttribute('src');
+                if (src && HelperService.isValidUrl(src)) {
+                    images.push(src);
+                }
+            });
+            
+        }
         return images;
     };
+
+    static setDefaultMetaIfOgNotExists(metas, ogTagContainer) {
+        let siteMeta;
+        for (let i = 0; i < metas.length; i++) {
+            const el = metas[i];
+            for (let metaKey in OG_TAGS) {
+                if (!ogTagContainer[metaKey]) {
+                    siteMeta = HelperService.readMetaTag(el, metaKey);
+                    if (siteMeta) {
+                        ogTagContainer[metaKey] = siteMeta;
+                    }
+    
+                }
+            }
+        }
+        return ogTagContainer;
+    }
     
 }
 

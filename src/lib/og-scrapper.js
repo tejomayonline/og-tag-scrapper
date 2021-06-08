@@ -19,13 +19,12 @@ class OgScrapper {
         this.axios = axios;
     }
 
-    async parse (siteUrl, ogPropList) {
-        let requestToUrl = {
+    async parse (siteUrl) {
+        const requestToUrl = {
             method: 'get',
             headers: {
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
             }
-
         };
         if (this.HelperService.isValidUrl(siteUrl)) {
             requestToUrl.url = siteUrl;
@@ -33,22 +32,21 @@ class OgScrapper {
 
         try {
             const { data: responseData } = await this.axios(requestToUrl);
-            const ogTagContainer = {};
+            let ogTagContainer = {};
             const $ = this.HTMLParser.parse(responseData);
             ogTagContainer.images = this.HelperService.getImageUrlList($, 'og');
             const metas = $.querySelectorAll('meta');
             let ogPropValue;
             for (let i = 0; i < metas.length; i++) {
                 const el = metas[i];
-                ogPropValue = this.HelperService.readMetaTag(el, OG_TAGS.title);
-                if (ogPropValue) {
-                    ogTagContainer.title = ogPropValue;
-                }
-                ogPropValue = this.HelperService.readMetaTag(el, OG_TAGS.description);
-                if (ogPropValue) {
-                    ogTagContainer.description = ogPropValue;
+                for (let tagkey in OG_TAGS) {
+                    ogPropValue = this.HelperService.readMetaTag(el, OG_TAGS[tagkey]);
+                    if (ogPropValue) {
+                        ogTagContainer[tagkey] = ogPropValue;
+                    }
                 }
             }
+            ogTagContainer = this.HelperService.setDefaultMetaIfOgNotExists(metas, ogTagContainer);
             return ogTagContainer;
         } catch (err) {
             throw new Error(err);
