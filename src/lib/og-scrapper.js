@@ -1,15 +1,6 @@
 
 const { OG_TAGS } = require('../constants/constants');
 
-    // {
-    //     "title": "Apple iPhone 6, 16gb, Space Gray, Unlocked",
-    //     "description": "Built on 64-bit desktop-class architecture, the new A8 chip delivers more power.",
-    //     "images": [
-    //     "http://amazon.com/sample_image1.jpg",
-    //     "http: //amazon.com/sample_image2.jpg"
-    //     ]
-    //     }    
-
 class OgScrapper {
 
     constructor(HTMLParser, HelperService, axios) {
@@ -20,17 +11,16 @@ class OgScrapper {
     }
 
     async parse (siteUrl) {
-        const requestToUrl = {
-            method: 'get',
-            headers: {
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-            }
-        };
-        if (this.HelperService.isValidUrl(siteUrl)) {
-            requestToUrl.url = siteUrl;
-        }
-
         try {
+            const requestToUrl = {
+                method: 'get',
+                headers: {
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+                }
+            };
+            if (this.HelperService.isValidUrl(siteUrl)) {
+                requestToUrl.url = siteUrl;
+            }
             const { data: responseData } = await this.axios(requestToUrl);
             let ogTagContainer = {};
             const $ = this.HTMLParser.parse(responseData);

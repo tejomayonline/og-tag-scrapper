@@ -1,23 +1,21 @@
-const HTML = require('node-html-parser');
-const axios = require('axios');
+require('dotenv').config();
 
-const OgScrapper = require('./src/lib/og-scrapper');
-const UtilityService = require('./src/utility/utility.service');
-
-
-// Meta.parser('https://learnstartup.net/p/BJQWO5_Wnx', function (err, result) {
-
-//     console.log(result);
-// })
+const express = require('express');
+const helmet = require("helmet");
+const metaFinderController = require('./src/meta-finder/meta-finder.controller');
 
 
-(async () => {
+const app = express();
+const port = process.env.PORT || 3011;
 
-    const ogScrapper = new OgScrapper(HTML, UtilityService, axios);
+app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-    const scrapResponse = await ogScrapper.parse('https://www.youtube.com/watch?v=soGRyl9ztjI');
-
-     console.log(JSON.stringify(scrapResponse, null, 3));
+app.post('/', metaFinderController);
 
 
-})();
+app.listen(port, () => {
+    console.log(`Og meta finder listening at ${port}`);
+  })
+
