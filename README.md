@@ -18,8 +18,10 @@ curl --location --request POST 'https://hl82j05f4m.execute-api.us-east-1.amazona
 }'
 ```
 
-> Note: This api has basic auth enabled. without authentication it will throw  401 error. 
-> To use the api need to add __valid basic auth credentials__ in the place of __*********__
+> Note: This api has basic auth enabled. Without authentication, it will throw  401 error. 
+
+* To use the api need to add __valid basic auth credentials__ in the place of __*********__
+* In the api the url can be sent in the __url__ attribute of request body's to scrap and retrieve meta tags 
 
 ----------------------------------------------------------------------------------------------------
 
