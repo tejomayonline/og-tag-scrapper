@@ -1,5 +1,6 @@
+'use strict';
 
-const { OG_TAGS } = require('../constants/constants');
+const { OG_TAGS } = require('../environment');
 
 class OgScrapper {
 

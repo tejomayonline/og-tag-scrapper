@@ -1,4 +1,6 @@
-const { OG_TAGS } = require('../constants/constants');
+'use strict';
+
+const { OG_TAGS } = require('../environment');
 
 class HelperService {
 

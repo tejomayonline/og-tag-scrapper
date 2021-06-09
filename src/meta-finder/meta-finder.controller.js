@@ -1,3 +1,4 @@
+'use strict';
 const HTML = require('node-html-parser');
 const axios = require('axios');
 
