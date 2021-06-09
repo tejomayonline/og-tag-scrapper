@@ -11,14 +11,15 @@ payload {"url": ""}
 
 ```
 curl --location --request POST 'https://hl82j05f4m.execute-api.us-east-1.amazonaws.com/dev/api/v1/meta-tag' \
---header 'Authorization: Basic *********' \
+--header 'Authorization: *********' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "url": "https://www.npmjs.com/package/dotenv"
 }'
 ```
 
-> Note: This api has basic auth enabled. without authentication it will throw  401 error.
+> Note: This api has basic auth enabled. without authentication it will throw  401 error. 
+> To use the api need to add __valid basic auth credentials__ in the place of __*********__
 
 ----------------------------------------------------------------------------------------------------
 
