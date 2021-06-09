@@ -20,7 +20,7 @@ app.use(basicAuth({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/', metaFinderController);
+app.post('/api/v1/meta-tag', metaFinderController);
 
 
 app.listen(port, () => {

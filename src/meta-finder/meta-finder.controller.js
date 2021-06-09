@@ -5,7 +5,7 @@ const axios = require('axios');
 const OgScrapper = require('../lib/og-scrapper');
 const UtilityService = require('../utility/utility.service');
 
-module.exports = async (req, res) => {
+module.exports = async (req, res, next) => {
     const { url } = req.body;
     const isUrlValid = UtilityService.isValidUrl(url);
     if (!isUrlValid) {

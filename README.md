@@ -1,6 +1,6 @@
 # og-tag-scrapper
 
-og: Tag scrapper is a microservice with an api to scrap og tags / meta tags
+og: tag scrapper is an api to scrap og tags / meta tags
 and return title, description, images in the api
 
 ```sh

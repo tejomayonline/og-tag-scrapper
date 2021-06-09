@@ -2,3 +2,5 @@
 .vscode
 .env
 .serverless/
+.nyc_output/
+coverage/

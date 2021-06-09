@@ -1,5 +1,5 @@
 'use strict';
-
+require('dotenv').config();
 const ENV = process.env;
 const BASIC_AUTH_CREDS = ENV.BASIC_AUTH_CREDS.split(':');
 const metTagList = ENV.META_TAG_LIST.split(',');
