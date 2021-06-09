@@ -6,7 +6,6 @@ class OgScrapper {
 
     constructor(HTMLParser, HelperService, axios) {
         this.HTMLParser = HTMLParser;
-        this.ogTagContainer = {};
         this.HelperService = HelperService;
         this.axios = axios;
     }
@@ -17,11 +16,9 @@ class OgScrapper {
                 method: 'get',
                 headers: {
                     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-                }
+                },
+                url: siteUrl
             };
-            if (this.HelperService.isValidUrl(siteUrl)) {
-                requestToUrl.url = siteUrl;
-            }
             const { data: responseData } = await this.axios(requestToUrl);
             let ogTagContainer = {};
             const $ = this.HTMLParser.parse(responseData);
