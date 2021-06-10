@@ -1,7 +1,12 @@
 # og-tag-scrapper
 
-og: tag scrapper is an api to scrap og tags / meta tags
+og tag scrapper is an api to scrap og tags / meta tags
 and return title, description, images in the api
+
+### Description
+Og Tag Scrapper exposes an api that will take a site url and return the meta tags values of `title`, `description`, and `images` used in the site. It will first try to find the Open Graph (og) meta tags on the site. 
+If there any above of og tags not found it will fallback to site meta tags.
+
 
 ```sh
 POST  / 
